@@ -69,16 +69,16 @@ def move_triangle():
     move_point_c()
 
 def move_point_a():
-    print('a')
-    pass
+    x0, y0 = POINT_A_START
+    x1, y1 = POINT_A_END
 
 def move_point_b():
-    print('b')
-    pass
+    x0, y0 = POINT_B_START
+    x1, y1 = POINT_B_END
 
 def move_point_c():
-    print('c')
-    pass
+    x0, y0 = POINT_C_START
+    x1, y1 = POINT_C_END
 
 while True:
     move_circle()
