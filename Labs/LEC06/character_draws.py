@@ -3,6 +3,12 @@ from pico2d import *
 
 open_canvas(800, 600)
 
+boy = load_image('character.png')
+
+clear_canvas()
+boy.draw(400, 300)
+update_canvas()
+
 def move_circle():
     print('circle')
     pass
@@ -25,7 +31,6 @@ while running:
     if not running:
         break
 
-    clear_canvas()
     move_circle()
     move_rectangle()
     move_triangle()
