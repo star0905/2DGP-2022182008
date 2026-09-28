@@ -11,7 +11,10 @@ boy.draw(400, 300)
 update_canvas()
 
 def move_circle():
-    print('circle')
+    for degree in range(360):
+     theta = math.radians(degree)
+     x = 400 + 200 * math.cos(theta)
+     y = 300 + 200 * math.sin(theta)
     pass
 
 def move_rectangle():
