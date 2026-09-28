@@ -57,8 +57,9 @@ def move_left():
         draw_boy(50, y)
 
 def move_triangle():
-    print('triangle')
-    pass
+    move_point_a()
+    move_point_b()
+    move_point_c()
 
 while True:
     move_circle()
