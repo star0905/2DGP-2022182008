@@ -22,6 +22,13 @@ def handle_events():
             close_canvas()
             raise SystemExit
 
+POINT_A_START = (100, 100)
+POINT_A_END = (700, 100)
+POINT_B_START = (700, 100)
+POINT_B_END = (400, 500)
+POINT_C_START = (400, 500)
+POINT_C_END = (100, 100)
+
 def move_circle():
     for degree in range(361):
          theta = math.radians(degree)
