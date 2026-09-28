@@ -72,6 +72,13 @@ def move_point_a():
     x0, y0 = POINT_A_START
     x1, y1 = POINT_A_END
 
+    for i in range(0, 100 + 1, 1):
+        t = i / 100.0
+        x = x0 + (x1 - x0) * t
+        y = y0 + (y1 - y0) * t
+
+        draw_boy(x, y)
+
 def move_point_b():
     x0, y0 = POINT_B_START
     x1, y1 = POINT_B_END
