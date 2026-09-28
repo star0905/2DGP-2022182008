@@ -6,6 +6,14 @@ open_canvas(800, 600)
 
 boy = load_image('character.png')
 
+# 이동 표현 함수
+def draw_boy(x, y):
+    handle_events()
+    clear_canvas()
+    boy.draw(x, y)
+    update_canvas()
+    delay(0.01)
+
 clear_canvas()
 # 캔버스 안정용
 def handle_events():
@@ -32,7 +40,7 @@ def move_rectangle():
     move_bottom()
     move_left()
 
-def move_top():
+def move_top():    
     print('top')
     pass
 def move_right():
