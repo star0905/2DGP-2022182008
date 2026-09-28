@@ -61,6 +61,18 @@ def move_triangle():
     move_point_b()
     move_point_c()
 
+def move_point_a():
+    print('a')
+    pass
+
+def move_point_b():
+    print('b')
+    pass
+
+def move_point_c():
+    print('c')
+    pass
+
 while True:
     move_circle()
     move_rectangle()
