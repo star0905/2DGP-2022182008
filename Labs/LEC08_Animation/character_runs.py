@@ -3,7 +3,7 @@ from pico2d import *
 open_canvas(800, 600)
 
 grass = load_image('grass.png')
-character = load_image('homework_charater.png')
+character = load_image('hero_sheet.png')
 # fill here
 frame = 0
 
