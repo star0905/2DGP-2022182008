@@ -31,6 +31,12 @@ while True:
                 handle_events()
                 clear_canvas()
                 grass.draw(400, 30)
+                # 현재 프레임의 위치와 크기 (프레임마다 다름)
+                left = frame['x']
+                width = frame['w']
+                height = frame['h']
+                # pico2d 는 이미지 아래가 0 이므로 위 기준 y 좌표를 변환
+                bottom = boy.h - (frame['y'] + height)
                 character.clip_draw(
                 left, bottom,
                 width, height,
