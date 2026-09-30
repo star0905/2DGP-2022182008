@@ -20,26 +20,27 @@ def handle_events():
 # 재생할 애니메이션 순서
 animations = ['idle', 'walk', 'run', 'jump', 'attack']
 
-# 애니메이션을 차례로 한 바퀴 재생
-for name in animations:
-    frames = sheet_info['animations'][name]['frames']
-    # 각 애니메이션을 5번 반복
-    for repeat in range(5):
-        # 현재 애니메이션의 프레임 수만큼 재생 (애니메이션마다 프레임 수가 다름)
-        for frame in frames:
-            handle_events()
-            clear_canvas()
-            grass.draw(400, 30)
-            character.clip_draw(
-            left, bottom,
-            width, height,
-            x, y
-        ) 
-        update_canvas()
-        frame = (frame + 1) % 8
+# 애니메이션 순서를 계속 반복
+while True:
+    for name in animations:
+        frames = sheet_info['animations'][name]['frames']
+        # 각 애니메이션을 5번 반복
+        for repeat in range(5):
+            # 현재 애니메이션의 프레임 수만큼 재생 (애니메이션마다 프레임 수가 다름)
+            for frame in frames:
+                handle_events()
+                clear_canvas()
+                grass.draw(400, 30)
+                character.clip_draw(
+                left, bottom,
+                width, height,
+                x, y
+            ) 
+            update_canvas()
+            frame = (frame + 1) % 8
 
-handle_events()
+    handle_events()
 
-delay(0.05)
+    delay(0.05)
     
 close_canvas()
