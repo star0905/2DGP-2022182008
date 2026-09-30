@@ -24,7 +24,7 @@ animations = ['idle', 'walk', 'run', 'jump', 'attack']
 while True:
     for name in animations:
         frames = sheet_info['animations'][name]['frames']
-        # 각 애니메이션을 4번 반복
+        # 각 애니메이션을 5번 반복
         for repeat in range(5):
             # 현재 애니메이션의 프레임 수만큼 재생 (애니메이션마다 프레임 수가 다름)
             for frame in frames:
@@ -50,7 +50,6 @@ while True:
 
                 delay(0.08)
             
-
         handle_events()
         delay(1.0)
     
