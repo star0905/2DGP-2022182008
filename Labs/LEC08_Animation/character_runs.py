@@ -11,6 +11,8 @@ frame = 0
 with open('hero_sheet.json', 'r', encoding='utf-8') as f:
     sheet_info = json.load(f)
 
+GROUND_Y = 50    # 캐릭터 발이 닿는 y좌표
+
 def handle_events():
     for event in get_events():
         if event.type == SDL_QUIT or (event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE):
@@ -36,7 +38,9 @@ while True:
                 width = frame['w']
                 height = frame['h']
                 # pico2d 는 이미지 아래가 0 이므로 위 기준 y 좌표를 변환
-                bottom = boy.h - (frame['y'] + height)
+                bottom = character.h - (frame['y'] + height)
+                x = 400 + (width / 2 - frame['pivot_x'])
+                y = GROUND_Y + frame['offset_y'] + height
                 character.clip_draw(
                 left, bottom,
                 width, height,
