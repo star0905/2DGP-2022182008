@@ -7,7 +7,15 @@ character = load_image('homework_charater.png')
 # fill here
 frame = 0
 
+def handle_events():
+    for event in get_events():
+        if event.type == SDL_QUIT or (event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE):
+            close_canvas()
+            raise SystemExit
+
+
 for x in range(0, 800, 5):
+    handle_events()
     clear_canvas()
     grass.draw(400, 30)
     character.clip_draw(
@@ -17,6 +25,8 @@ for x in range(0, 800, 5):
     update_canvas()
 
     frame = (frame + 1) % 8
+
+    handle_events()
 
     delay(0.05)
     
