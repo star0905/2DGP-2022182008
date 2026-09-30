@@ -1,34 +1,11 @@
 from pico2d import *
 
-
 open_canvas()
 
 grass = load_image('grass.png')
-character = load_image('animation_sheet.png')
-
+character = load_image('homework_charater.png')
 # fill here
-frame = 0
 
-for x in range(0, 800, 5):
-    clear_canvas()
-    grass.draw(400,30)
-    for n in range (0, 4, 1)
-    while n=1:
-    character.clip_draw(
-        frame * 100, 0,
-        100, 100, x, 90
-    )
-    
-    character.clip_composite_draw(
-        frame * 100, 0, 100, 100, 
-        0, 'h',
-        x, 90,
-        100, 100
-     )
-    update_canvas()
-
-    frame = (frame + 1) % 8
-    delay(0.03)
 
 close_canvas()
 
