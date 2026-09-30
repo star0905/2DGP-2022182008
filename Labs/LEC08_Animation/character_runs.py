@@ -19,11 +19,11 @@ for x in range(0, 800, 5):
     clear_canvas()
     grass.draw(400, 30)
     character.clip_draw(
-        frame * 100, 0,
-        100, 100, x, 90
-    )
+        left, bottom,
+        width, height,
+        x, y
+    ) 
     update_canvas()
-
     frame = (frame + 1) % 8
 
     handle_events()
