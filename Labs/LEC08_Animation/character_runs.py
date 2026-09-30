@@ -49,11 +49,12 @@ while True:
                  width * SCALE,
                  height * SCALE
                 ) 
-            update_canvas()
-            frame = (frame + 1) % 8
+                update_canvas()
+
+                delay(0.08)
             
 
-    handle_events()
-    delay(0.05)
+        handle_events()
+        delay(1.0)
     
 close_canvas()
