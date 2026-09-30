@@ -7,6 +7,10 @@ character = load_image('hero_sheet.png')
 # fill here
 frame = 0
 
+# 프레임마다 크기가 달라서, 프레임 좌표/크기는 JSON 에서 불러옴
+with open('hero_sheet.json', 'r', encoding='utf-8') as f:
+    sheet_info = json.load(f)
+
 def handle_events():
     for event in get_events():
         if event.type == SDL_QUIT or (event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE):
