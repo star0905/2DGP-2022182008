@@ -16,24 +16,30 @@ def handle_events():
         if event.type == SDL_QUIT or (event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE):
             close_canvas()
             raise SystemExit
-        # 각 애니메이션을 5번 반복
-for repeat in range(5):
-# 현재 애니메이션의 프레임 수만큼 재생 (애니메이션마다 프레임 수가 다름)
- for frame in frames:
-    for x in range(0, 800, 5):
-     handle_events()
-     clear_canvas()
-     grass.draw(400, 30)
-     character.clip_draw(
-        left, bottom,
-        width, height,
-        x, y
-    ) 
-     update_canvas()
-     frame = (frame + 1) % 8
 
-     handle_events()
+# 재생할 애니메이션 순서
+animations = ['idle', 'walk', 'run', 'jump', 'attack']
 
-    delay(0.05)
+# 애니메이션을 차례로 한 바퀴 재생
+for name in animations:
+    frames = sheet_info['animations'][name]['frames']
+    # 각 애니메이션을 5번 반복
+    for repeat in range(5):
+        # 현재 애니메이션의 프레임 수만큼 재생 (애니메이션마다 프레임 수가 다름)
+        for frame in frames:
+            handle_events()
+            clear_canvas()
+            grass.draw(400, 30)
+            character.clip_draw(
+            left, bottom,
+            width, height,
+            x, y
+        ) 
+        update_canvas()
+        frame = (frame + 1) % 8
+
+handle_events()
+
+delay(0.05)
     
 close_canvas()
