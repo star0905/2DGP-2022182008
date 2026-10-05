@@ -23,7 +23,36 @@ ANIMATION_REGIONS = (
     ("동작 10", 0, 376, 288, 42),
     ("동작 11", 0, 425, 150, 45),
 )
-ANIMATION_FRAME_COUNTS = (11, 13, 6, 9, 6, 6, 6, 6, 2, 8, 4)
+ANIMATION_FRAME_COUNTS = (11, 12, 6, 9, 6, 6, 6, 6, 2, 8, 4)
+ANIMATION_FRAME_BOUNDS = (
+    (0, 30, 57, 85, 114, 146, 177, 208, 239, 268, 299, 335),
+    (0, 36, 64, 96, 135, 169, 205, 235, 262, 294, 332, 368, 399),
+    (0, 37, 82, 127, 174, 222, 262),
+    (0, 33, 66, 98, 130, 161, 192, 227, 264, 299),
+    (0, 34, 68, 102, 137, 171, 218),
+    (0, 33, 70, 108, 145, 183, 218),
+    (0, 33, 71, 117, 167, 214, 258),
+    (0, 29, 60, 89, 117, 146, 172),
+    (180, 229, 275),
+    (0, 30, 63, 97, 134, 172, 213, 252, 288),
+    (0, 45, 90, 122, 150),
+)
+
+
+def build_animations():
+    animations = []
+    for region, frame_bounds in zip(ANIMATION_REGIONS, ANIMATION_FRAME_BOUNDS):
+        name, region_x, region_y, region_width, region_height = region
+        if frame_bounds[0] != region_x or frame_bounds[-1] != region_x + region_width:
+            raise ValueError(f"프레임 경계가 동작 영역과 일치하지 않습니다: {name}")
+
+        frames = tuple(
+            (left, region_y, right - left, region_height)
+            for left, right in zip(frame_bounds, frame_bounds[1:])
+        )
+        animations.append((name, frames))
+
+    return tuple(animations)
 
 
 def handle_events():
