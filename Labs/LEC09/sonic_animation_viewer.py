@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from pico2d import *
 
 
@@ -7,6 +9,7 @@ DISPLAY_HEIGHT = CANVAS_HEIGHT // 2
 FRAME_INTERVAL = 0.08
 REPETITIONS_PER_ACTION = 5
 ACTION_PAUSE = 1.0
+IMAGE_PATH = Path(__file__).resolve().parent / "sonic-sprite.png"
 
 
 def handle_events():
