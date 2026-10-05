@@ -23,6 +23,7 @@ ANIMATION_REGIONS = (
     ("동작 10", 0, 376, 288, 42),
     ("동작 11", 0, 425, 150, 45),
 )
+ANIMATION_FRAME_COUNTS = (11, 13, 6, 9, 6, 6, 6, 6, 2, 8, 4)
 
 
 def handle_events():
