@@ -21,8 +21,25 @@ def handle_events():
     return True
 
 
+def load_sprite():
+    if not IMAGE_PATH.is_file():
+        raise FileNotFoundError(f"스프라이트 파일을 찾을 수 없습니다: {IMAGE_PATH}")
+
+    try:
+        return load_image(str(IMAGE_PATH))
+    except Exception as error:
+        raise RuntimeError(f"스프라이트 파일을 불러올 수 없습니다: {IMAGE_PATH}") from error
+
+
 def main():
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    try:
+        sprite = load_sprite()
+    except (FileNotFoundError, RuntimeError) as error:
+        print(error)
+        close_canvas()
+        return
+
     running = True
 
     while running:
