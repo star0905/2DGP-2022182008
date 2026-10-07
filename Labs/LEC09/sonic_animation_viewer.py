@@ -119,6 +119,7 @@ def main():
             repeat_count += 1
             if repeat_count >= REPETITIONS_PER_ACTION:
                 repeat_count = 0
+                delay(ACTION_PAUSE)
 
         delay(FRAME_INTERVAL)
 
