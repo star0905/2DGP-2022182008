@@ -111,8 +111,7 @@ def main():
         clear_canvas()
         draw_frame(sprite, first_action_frames[frame_index], center_x, base_y)
         update_canvas()
-        if frame_index + 1 < len(first_action_frames):
-            frame_index += 1
+        frame_index = (frame_index + 1) % len(first_action_frames)
         delay(FRAME_INTERVAL)
 
     close_canvas()
