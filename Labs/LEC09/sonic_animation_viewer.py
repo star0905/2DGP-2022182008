@@ -55,6 +55,12 @@ def build_animations():
     return tuple(animations)
 
 
+def to_pico2d_rect(frame, image_height):
+    left, top, width, height = frame
+    bottom = image_height - (top + height)
+    return left, bottom, width, height
+
+
 def handle_events():
     for event in get_events():
         if event.type == SDL_QUIT or (
