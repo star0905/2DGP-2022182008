@@ -41,7 +41,9 @@ ANIMATION_FRAME_BOUNDS = (
 
 def build_animations():
     animations = []
-    for region, frame_bounds in zip(ANIMATION_REGIONS, ANIMATION_FRAME_BOUNDS):
+    for region, frame_bounds, expected_count in zip(
+        ANIMATION_REGIONS, ANIMATION_FRAME_BOUNDS, ANIMATION_FRAME_COUNTS
+    ):
         name, region_x, region_y, region_width, region_height = region
         if frame_bounds[0] != region_x or frame_bounds[-1] != region_x + region_width:
             raise ValueError(f"프레임 경계가 동작 영역과 일치하지 않습니다: {name}")
@@ -50,6 +52,8 @@ def build_animations():
             (left, region_y, right - left, region_height)
             for left, right in zip(frame_bounds, frame_bounds[1:])
         )
+        if len(frames) != expected_count:
+            raise ValueError(f"프레임 수가 일치하지 않습니다: {name}")
         animations.append((name, frames))
 
     return tuple(animations)
@@ -99,7 +103,8 @@ def main():
         return
 
     animations = build_animations()
-    _, first_action_frames = animations[0]
+    action_index = 0
+    _, current_action_frames = animations[action_index]
     center_x = CANVAS_WIDTH // 2
     base_y = (CANVAS_HEIGHT - DISPLAY_HEIGHT) // 2
 
@@ -110,7 +115,7 @@ def main():
     while running:
         running = handle_events()
         clear_canvas()
-        draw_frame(sprite, first_action_frames[frame_index], center_x, base_y)
+        draw_frame(sprite, current_action_frames[frame_index], center_x, base_y)
         update_canvas()
 
         frame_index += 1
