@@ -110,7 +110,7 @@ def main():
         clear_canvas()
         draw_frame(sprite, sample_frame, center_x, base_y)
         update_canvas()
-        delay(0.01)
+        delay(FRAME_INTERVAL)
 
     close_canvas()
 
