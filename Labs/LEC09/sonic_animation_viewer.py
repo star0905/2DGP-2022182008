@@ -105,13 +105,21 @@ def main():
 
     running = True
     frame_index = 0
+    repeat_count = 0
 
     while running:
         running = handle_events()
         clear_canvas()
         draw_frame(sprite, first_action_frames[frame_index], center_x, base_y)
         update_canvas()
-        frame_index = (frame_index + 1) % len(first_action_frames)
+
+        frame_index += 1
+        if frame_index >= len(first_action_frames):
+            frame_index = 0
+            repeat_count += 1
+            if repeat_count >= REPETITIONS_PER_ACTION:
+                repeat_count = 0
+
         delay(FRAME_INTERVAL)
 
     close_canvas()
