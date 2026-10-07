@@ -99,17 +99,20 @@ def main():
         return
 
     animations = build_animations()
-    sample_frame = animations[0][1][0]
+    _, first_action_frames = animations[0]
     center_x = CANVAS_WIDTH // 2
     base_y = (CANVAS_HEIGHT - DISPLAY_HEIGHT) // 2
 
     running = True
+    frame_index = 0
 
     while running:
         running = handle_events()
         clear_canvas()
-        draw_frame(sprite, sample_frame, center_x, base_y)
+        draw_frame(sprite, first_action_frames[frame_index], center_x, base_y)
         update_canvas()
+        if frame_index + 1 < len(first_action_frames):
+            frame_index += 1
         delay(FRAME_INTERVAL)
 
     close_canvas()
