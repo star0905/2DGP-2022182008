@@ -61,12 +61,13 @@ def to_pico2d_rect(frame, image_height):
     return left, bottom, width, height
 
 
-def draw_frame(sprite, frame, x, y):
+def draw_frame(sprite, frame, center_x, base_y):
     left, bottom, width, height = to_pico2d_rect(frame, sprite.h)
     scale = DISPLAY_HEIGHT / height
     draw_width = int(round(width * scale))
     draw_height = DISPLAY_HEIGHT
-    sprite.clip_draw(left, bottom, width, height, x, y, draw_width, draw_height)
+    draw_y = base_y + draw_height // 2
+    sprite.clip_draw(left, bottom, width, height, center_x, draw_y, draw_width, draw_height)
 
 
 def handle_events():
@@ -100,14 +101,14 @@ def main():
     animations = build_animations()
     sample_frame = animations[0][1][0]
     center_x = CANVAS_WIDTH // 2
-    center_y = CANVAS_HEIGHT // 2
+    base_y = (CANVAS_HEIGHT - DISPLAY_HEIGHT) // 2
 
     running = True
 
     while running:
         running = handle_events()
         clear_canvas()
-        draw_frame(sprite, sample_frame, center_x, center_y)
+        draw_frame(sprite, sample_frame, center_x, base_y)
         update_canvas()
         delay(0.01)
 
