@@ -63,7 +63,10 @@ def to_pico2d_rect(frame, image_height):
 
 def draw_frame(sprite, frame, x, y):
     left, bottom, width, height = to_pico2d_rect(frame, sprite.h)
-    sprite.clip_draw(left, bottom, width, height, x, y)
+    scale = DISPLAY_HEIGHT / height
+    draw_width = int(round(width * scale))
+    draw_height = DISPLAY_HEIGHT
+    sprite.clip_draw(left, bottom, width, height, x, y, draw_width, draw_height)
 
 
 def handle_events():
