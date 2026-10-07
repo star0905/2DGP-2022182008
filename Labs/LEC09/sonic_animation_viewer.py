@@ -61,6 +61,11 @@ def to_pico2d_rect(frame, image_height):
     return left, bottom, width, height
 
 
+def draw_frame(sprite, frame, x, y):
+    left, bottom, width, height = to_pico2d_rect(frame, sprite.h)
+    sprite.clip_draw(left, bottom, width, height, x, y)
+
+
 def handle_events():
     for event in get_events():
         if event.type == SDL_QUIT or (
@@ -89,11 +94,17 @@ def main():
         close_canvas()
         return
 
+    animations = build_animations()
+    sample_frame = animations[0][1][0]
+    center_x = CANVAS_WIDTH // 2
+    center_y = CANVAS_HEIGHT // 2
+
     running = True
 
     while running:
         running = handle_events()
         clear_canvas()
+        draw_frame(sprite, sample_frame, center_x, center_y)
         update_canvas()
         delay(0.01)
 
