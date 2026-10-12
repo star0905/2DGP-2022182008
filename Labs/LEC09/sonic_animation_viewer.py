@@ -125,9 +125,8 @@ def main():
             if repeat_count >= REPETITIONS_PER_ACTION:
                 repeat_count = 0
                 delay(ACTION_PAUSE)
-                if action_index + 1 < len(animations):
-                    action_index += 1
-                    _, current_action_frames = animations[action_index]
+                action_index = (action_index + 1) % len(animations)
+                _, current_action_frames = animations[action_index]
 
         delay(FRAME_INTERVAL)
 
