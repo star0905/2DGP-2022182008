@@ -17,6 +17,7 @@ class Boy:
         self.idle_started_at = get_time()
         self.dir = 0
         self.face_dir = 1
+        self.item_type = 0
         self.pressed_keys = set()
 
         self.machine = Machine(
@@ -47,6 +48,8 @@ class Boy:
         self.frame = 0
 
     def fire_ball(self):
+        if self.item_type == 0:
+            return
         ball = Ball(self.x, self.y, self.face_dir * 10)
         game_world.add_oject(ball)
 
