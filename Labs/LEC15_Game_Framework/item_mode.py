@@ -34,7 +34,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             import game_framework
             game_framework.pop_mode()
-        elif event.type == SDL_KEYDOWN and event.key in (SDLK_0, SDLK_1, SDLK_2):
+        elif event.type == SDL_KEYDOWN and event.key in (SDLK_0, SDLK_1):
             import game_framework
             import playname
             playname.boy.item_type = event.key - SDLK_0
