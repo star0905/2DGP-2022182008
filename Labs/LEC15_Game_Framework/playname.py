@@ -21,6 +21,10 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_i:
             import item_mode
             game_framework.push_mode(item_mode)
+        elif event.type == SDL_KEYDOWN and event.key in (SDLK_0, SDLK_1, SDLK_2):
+            import item_mode
+            item_mode.selected_item = event.key - SDLK_0
+            game_framework.push_mode(item_mode)
         else:
             boy.handle_event(event)
 
