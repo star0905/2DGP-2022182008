@@ -4,14 +4,15 @@ import game_world
 
 
 class Ball:
-    image = None
+    images = {}
 
     def __init__(self, x, y, velocity, item_type=1):
-        if Ball.image is None:
-            Ball.image = load_image('ball21x21.png')
+        if item_type not in Ball.images:
+            image_name = 'ball41x41.png' if item_type == 2 else 'ball21x21.png'
+            Ball.images[item_type] = load_image(image_name)
         self.x, self.y = x, y
         self.velocity = velocity
-        self.image = Ball.image
+        self.image = Ball.images[item_type]
 
     def update(self):
         self.x += self.velocity
