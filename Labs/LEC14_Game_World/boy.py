@@ -8,7 +8,7 @@ from transitions import Machine
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 400, 90
+        self.x, self.y = 400, 50
         self.frame = 0
         self.image = load_image('animation_sheet.png')
         self.idle_started_at = get_time()
@@ -48,7 +48,10 @@ class Boy:
                 event.key == SDLK_SPACE and
                 self.state == 'SLEEP'):
             self.wake_up()
-            return
+            return self.face_dir
+
+        if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
+            return self.face_dir
 
         if (event.type not in (SDL_KEYDOWN, SDL_KEYUP) or
                 event.key not in (SDLK_LEFT, SDLK_RIGHT)):

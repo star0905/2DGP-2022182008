@@ -1,9 +1,8 @@
 from pico2d import *
+from ball import Ball
 from boy import Boy
 from grass import Grass
-
-
-# Game object class here
+import game_world
 
 
 def handle_events():
@@ -16,40 +15,41 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
         else:
-            boy.handle_event(event)
+            direction = boy.handle_event(event)
+            if direction is not None:
+                direction_name = '오른쪽' if direction == 1 else '왼쪽'
+                print(f'볼 발사 방향: {direction_name}')
+                ball = Ball(boy.x + direction * 45, boy.y, direction)
+                game_world.add_object(ball, 1)
 
 
 
 def reset_world():
-    global world
     global boy
 
-    world = []
-
-    grass = Grass()
-    world.append(grass)
+    left_grass = Grass(50)
+    game_world.add_object(left_grass, 0)
 
     boy = Boy()
-    world.append(boy)
+    game_world.add_object(boy, 1)
 
+    right_grass = Grass(80)
+    game_world.add_object(right_grass, 2)
 
 
 def update_world():
-    for o in world:
-        o.update()
+    game_world.update()
     pass
 
 
 def render_world():
     clear_canvas()
-    for o in world:
-        o.draw()
+    game_world.render()
     update_canvas()
+    pass
 
 
 running = True
-
-
 
 open_canvas()
 reset_world()
