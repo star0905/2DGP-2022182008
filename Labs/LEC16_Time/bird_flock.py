@@ -29,3 +29,15 @@ class BirdFlock:
         self.x = 150.0
         self.y = 410.0
         self.direction = 1
+        self.birds = self._create_birds()
+
+    @staticmethod
+    def _create_birds():
+        formation = (
+            (-270, 35), (-180, 85), (-90, 45), (0, 100), (90, 55),
+            (180, 90), (270, 35), (-135, -35), (45, -20), (180, -45),
+        )
+        return [
+            Bird(offset_x, offset_y, index * 1.4 % FRAME_COUNT)
+            for index, (offset_x, offset_y) in enumerate(formation[:BIRD_COUNT])
+        ]
