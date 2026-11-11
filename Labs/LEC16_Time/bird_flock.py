@@ -57,3 +57,17 @@ class BirdFlock:
         for bird in self.birds:
             bird.frame = (bird.frame + ANIMATION_FPS *
                           game_framework.frame_time) % FRAME_COUNT
+
+    def draw(self):
+        for bird in self.birds:
+            frame_index = int(bird.frame)
+            row, column = divmod(frame_index, FRAME_COLUMNS)
+            source_x = column * FRAME_WIDTH
+            source_y = (2 - row) * FRAME_HEIGHT
+            flip = '' if self.direction == 1 else 'h'
+            self.image.clip_composite_draw(
+                source_x, source_y, FRAME_WIDTH, FRAME_HEIGHT,
+                0, flip,
+                self.x + bird.offset_x, self.y + bird.offset_y,
+                DISPLAY_WIDTH, DISPLAY_HEIGHT
+            )
