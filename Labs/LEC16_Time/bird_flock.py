@@ -41,3 +41,15 @@ class BirdFlock:
             Bird(offset_x, offset_y, index * 1.4 % FRAME_COUNT)
             for index, (offset_x, offset_y) in enumerate(formation[:BIRD_COUNT])
         ]
+
+    def update(self):
+        self.x += self.direction * FLIGHT_SPEED * game_framework.frame_time
+        left_edge = self.x - 270 - DISPLAY_WIDTH / 2
+        right_edge = self.x + 270 + DISPLAY_WIDTH / 2
+
+        if left_edge <= 0:
+            self.x = 270 + DISPLAY_WIDTH / 2
+            self.direction = 1
+        elif right_edge >= get_canvas_width():
+            self.x = get_canvas_width() - 270 - DISPLAY_WIDTH / 2
+            self.direction = -1
