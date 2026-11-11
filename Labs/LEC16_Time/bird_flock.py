@@ -21,3 +21,11 @@ class Bird:
     offset_x: float
     offset_y: float
     frame: float
+
+
+class BirdFlock:
+    def __init__(self):
+        self.image = load_image('bird_animation.png')
+        self.x = 150.0
+        self.y = 410.0
+        self.direction = 1
