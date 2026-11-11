@@ -53,3 +53,7 @@ class BirdFlock:
         elif right_edge >= get_canvas_width():
             self.x = get_canvas_width() - 270 - DISPLAY_WIDTH / 2
             self.direction = -1
+
+        for bird in self.birds:
+            bird.frame = (bird.frame + ANIMATION_FPS *
+                          game_framework.frame_time) % FRAME_COUNT
