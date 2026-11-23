@@ -67,6 +67,7 @@ def finish():
 
 def update():
     game_world.update()
+    game_world.handle_collisions()
 
 def render():
     clear_canvas()

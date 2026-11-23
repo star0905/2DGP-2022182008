@@ -1,5 +1,5 @@
 import random
-
+from pico2d import open_canvas, close_canvas
 from pico2d import load_image, draw_rectangle, clamp
 
 import game_framework
@@ -34,6 +34,7 @@ class Zombie:
         self.x, self.y = random.randint(MIN_X, MAX_X), 150
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1, 1])
+        self.hit_count = 0
 
     def update(self):
         dt = game_framework.frame_time
@@ -44,10 +45,10 @@ class Zombie:
         elif self.x < MIN_X:
             self.dir = 1
         self.x = clamp(MIN_X, self.x, MAX_X)
-        if self.ball_count == 1:
+        if self.hit_count == 1:
             self.x /2
             self.x /2
-        if self.ball_count == 2:
+        if self.hit_count == 2:
             game_world.remove_object(self)
 
     def draw(self):
@@ -63,4 +64,7 @@ class Zombie:
     
     def handle_collision(self, group, other):
      if group == 'zombie:ball':
-         self.ball_count += 1
+         self.hit_count += 1
+     if group == 'zombie:boy':
+        close_canvas()
+
