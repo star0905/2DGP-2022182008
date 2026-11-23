@@ -44,6 +44,11 @@ class Zombie:
         elif self.x < MIN_X:
             self.dir = 1
         self.x = clamp(MIN_X, self.x, MAX_X)
+        if self.ball_count == 1:
+            self.x /2
+            self.x /2
+        if self.ball_count == 2:
+            game_world.remove_object(self)
 
     def draw(self):
         image = Zombie.images['Walk'][int(self.frame)]
@@ -55,3 +60,7 @@ class Zombie:
 
     def get_bb(self):
         return self.x - 100, self.y - 100, self.x + 100, self.y + 100
+    
+    def handle_collision(self, group, other):
+     if group == 'zombie:ball':
+         self.ball_count += 1
