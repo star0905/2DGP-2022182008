@@ -63,8 +63,9 @@ class Zombie:
         return self.x - 100, self.y - 100, self.x + 100, self.y + 100
     
     def handle_collision(self, group, other):
-     if group == 'zombie:ball':
-         self.hit_count += 1
-     if group == 'zombie:boy':
-        close_canvas()
+     if group == 'ball:zombie':
+        hit_count += 1
+     if group == 'boy:zombie':
+            game_world.clear
+
 
