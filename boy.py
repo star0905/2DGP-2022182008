@@ -1,4 +1,4 @@
-
+from pico2d import open_canvas, close_canvas
 from math import pi
 
 from pico2d import SDLK_a, SDLK_LEFT, SDLK_RIGHT, SDLK_SPACE, load_image
@@ -194,3 +194,8 @@ class Boy:
             draw_size,
             draw_size,
         )
+def handle_collision(self, group, other):
+ if group == 'boy:ball':
+  self.ball_count += 1
+ if group == 'boy:zombie':
+    close_canvas()
