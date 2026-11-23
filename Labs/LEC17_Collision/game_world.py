@@ -16,11 +16,11 @@ def add_objects(ol, depth=1):
     world[depth] += ol
 
 def remove_collision_object(o):
- for pairs in collision_pairs.values():
-     if o in pairs[0]:
-         pairs[0].remove(o)
- if o in pairs[1]:
-  pairs[1].remove(o)
+    for pairs in collision_pairs.values():
+        if o in pairs[0]:
+            pairs[0].remove(o)
+        if o in pairs[1]:
+            pairs[1].remove(o)
 
 def remove_object(o):
     for layer in world:
@@ -59,10 +59,10 @@ def add_collision_pair(group, a, b):
         print(f'Added new group {group}')
         collision_pairs[group] = [[], []]
 
-    if a:
+    if a and a not in collision_pairs[group][0]:
         collision_pairs[group][0].append(a)
 
-    if b:
+    if b and b not in collision_pairs[group][1]:
         collision_pairs[group][1].append(b)
 
 def handle_collision():
@@ -83,5 +83,4 @@ def handle_collision():
 def clear():
     for layer in world:
         layer.clear()
-
     collision_pairs.clear()
